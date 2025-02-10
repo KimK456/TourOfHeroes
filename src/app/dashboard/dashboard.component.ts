@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import {RouterLink} from '@angular/router';
 import {NgForOf} from '@angular/common';
 
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
   standalone: true,
   imports: [
-    RouterLink,
     NgForOf
   ],
-  styleUrls: ['./heroes.component.css']
+  styleUrls: ['./dashboard.component.css']
 })
-export class HeroesComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
 
   constructor(private heroService: HeroService) { }
@@ -26,6 +23,6 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes);
+      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
   }
 }
